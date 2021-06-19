@@ -2,48 +2,75 @@ import miscellaneous as mis
 import random
 import graficoCucaracha as g
 
-def lanzar(jugador,tablero,listPuntos):
+def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
   dado = [1,2,3,4,5,6,]
   listAux = []
   contador=0
-  lanzamiento = 5
+  dados = 5
   cond = True
-    
-  print('='*15)
-  print('Turno jugador',jugador)
-  print('='*15)
+  puntosAux = puntos
+  penalidadAux = penalidad
+      
+  print('='*25)
+  print('Turno jugador:',jugador)
+  print('='*25)
   mis.next('Presione <enter> para lanzar')
+  
   while cond:
-    mis.limpiar()
-    print('='*15)
-    print('Turno jugador',jugador)
-    print('='*15)
-    print('puntos:',listPuntos[jugador-1])
-    print('='*15)
-    print('Resultado de los dados')
-    for i in range(lanzamiento):
-      random.shuffle(dado)
-      listAux.append(dado[0])
-      if dado[0] == 1:
-        contador+=1
-      print(dado[0],end='\t')
+    #controla 
+    #1. si un jugador gana al tener 33 puntos.
+    #2. Si cede el turno al no sacar 1s.
+    #3. si el jugador debe pagar o recibir ganancia.
+    if puntosAux < 33:  
+      mis.limpiar()
+      print('='*25)
+      print('PREMIO ACUMULADO: $' + str( acumulado))
+      print('='*25)
+      print('     >>>',jugador,'<<<')
+      print('='*25)
+      print('puntos:',puntosAux,end=' ')
+      print('| Penalidad: $',penalidadAux)
+      print('='*25)
+      print('Resultado de los dados')
+      for i in range(dados):
+        random.shuffle(dado)
+        listAux.append(dado[0])
+        if dado[0] == 1:
+          contador+=1
+        print(dado[0],end='\t')
 
-    if 1 in listAux: 
-      texto = '\nSiguiente lanzamiento, presione <enter>...'
-      listAux= []
-    else:
-      texto = '\nFin de turno, presione <enter>...'
-     
-    #mis.next(texto)
-    print()
-    print('-'*20)
+      if 1 in listAux: 
+        #texto = '\nSiguiente lanzamiento, presione <enter>...'
+        listAux= []
+      else:
+        texto = '\nFin de turno, presione <enter>...'
+      
+      #mis.next(texto)
+      print()
+      print('-'*25)
 
-    if contador > 0:
-      lanzamiento -= contador
-      listPuntos[jugador-1] = g.actualizarTablero(tablero,contador,listPuntos[jugador-1])
-      contador = 0
+      #Se asigna la ganancia o se paga el case si pierde el turno por no sacar 1s
+      if contador > 0:
+        dados -= contador
+        puntosAux = g.actualizarTablero(tablero,contador,puntosAux)
+        #gananciaAux += case
+        contador = 0
+
+        #reinicia a 5 dados si el número de dados es cero por sacar 1s repetidamente en los lanzamientos.
+        if dados != 0:
+          #pregunta si el jugador desea lanzar nuevamente
+          cond = mis.againEscapeNega(input('Desea lanzar nuevamente, S/N >>> '))
+        else:
+          cond = False
+      
+      else:
+        penalidadAux += case
+        acumulado += case
+        cond = False
+        mis.next(texto)
+        print() 
+
     else:
       cond = False
-    
-    mis.next(texto)
-    print()
+
+  return puntosAux, penalidadAux, acumulado

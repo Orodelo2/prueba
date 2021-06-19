@@ -43,6 +43,5 @@ while cond:
     print('Ingrese cantidad de jugadores entre 2 y 7')
     mis.next('<enter>')
 
-
-
 juego.play(tableros,numJugadores)
+cond = mis.againEscapeNega(input('Desea jugar nuevamente, S/N >>> '))
