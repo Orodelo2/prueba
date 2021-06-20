@@ -2,10 +2,10 @@ import miscellaneous as mis
 
 def crearTablero(tablero):
   
-  f0  = [' ','2',' ',' ',' ','2',' ']
-  f1  = [' ',' ','2',' ','2',' ',' ']
-  f2  = [' ',' ',' ','2',' ',' ',' ']
-  f3  = [' ',' ','2',' ','2',' ',' ']
+  f0  = [' ','X',' ',' ',' ','X',' ']
+  f1  = [' ',' ','X',' ','X',' ',' ']
+  f2  = [' ',' ',' ','X',' ',' ',' ']
+  f3  = [' ',' ','x',' ','2',' ',' ']
   f4  = ['-','1','1',' ','1','1','-']
   f5  = ['|',' ','|',' ','|',' ','|']
   f6  = [' ',' ','|',' ','|',' ',' ']
@@ -15,7 +15,7 @@ def crearTablero(tablero):
   f10 = [' ','1','1',' ','1','1',' ']
   f11 = ['1',' ','|',' ','|',' ','1']
   f12 = ['|',' ','1',' ','1',' ','|']
-  f13 = ['|',' ',' ','3',' ',' ','|']
+  f13 = ['|',' ',' ','X',' ',' ','|']
 
   tablero.append(f0)
   tablero.append(f1)
@@ -37,28 +37,28 @@ def actualizarTablero(matriz,pos,points):
   pos2 = str(pos)
   salto = False
   puntos = points
-  #cond = True
-  #while cond:
-  #mis.limpiar()
-  #pos = input('ingrese pos >>> ')
-  salto = False
+  cond = True
 
   #actualizar la cucaracha
   #buscando el número 1, 2 o 3 en la matriz cucaracha para reemplazarlo
-  for i in range(14):
-    for j in range(7):
-      if pos2 in matriz[i][j]:
-        matriz[i][j] = 'X'
-        salto = True
-        puntos += pos
+  while cond:
+    for i in range(14):
+      for j in range(7):
+        if pos2 in matriz[i][j]:
+          matriz[i][j] = 'X'
+          salto = True
+          puntos += pos
+          break
+      if salto == True:
         break
-    if salto == True:
-      break
-
-  for i in range(len(matriz)):
-    for j in range(7):
-      print(matriz[i][j],end='\t')
-    print()
   
+  #resta una unidad al resultado de los dados cuando no hay valores disponibles en la cucaracha para llenar con dicho reultado, y llenar una casilla con un valor inferior. ejemplo, resultao = 3, y no hay 3 disponible en el tablero, entonces resta 1 y busca llenar un 2 en el tablero, si no hay 2 resta 1 y busca llenar un 1.
+  
+    if pos > 1 and salto == False:
+      pos -= 1
+      pos2 = str(pos)
+    else:
+      cond = False
+
   return puntos
   
