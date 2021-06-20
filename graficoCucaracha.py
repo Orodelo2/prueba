@@ -32,13 +32,6 @@ def crearTablero(tablero):
   tablero.append(f12)
   tablero.append(f13)
 
-  #for i in range(len(matriz)):
-  #  for j in range(len(f0)):
-  #    print(matriz[i][j],end='\t')
-  #  print()
-
-  #mis.next('<enter>')
-
 
 def actualizarTablero(matriz,pos,points):
   pos2 = str(pos)
@@ -49,11 +42,11 @@ def actualizarTablero(matriz,pos,points):
   #mis.limpiar()
   #pos = input('ingrese pos >>> ')
   salto = False
-  for i in range(len(matriz)):
+
+  #actualizar la cucaracha
+  #buscando el número 1, 2 o 3 en la matriz cucaracha para reemplazarlo
+  for i in range(14):
     for j in range(7):
-      #print(i)
-      #print(j)
-      #print(matriz[i][j])
       if pos2 in matriz[i][j]:
         matriz[i][j] = 'X'
         salto = True
@@ -68,4 +61,4 @@ def actualizarTablero(matriz,pos,points):
     print()
   
   return puntos
-  #mis.next('<enter>')
+  

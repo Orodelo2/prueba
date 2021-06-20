@@ -8,11 +8,14 @@ def play(tableros,numjug):
   penalidad = []
   case = int(input('Ingrese valor del case: $'))
   acumulado = case*2
+  
+  #1. Solicita los nombres de la cantidad de jugadores definidos por numjug (numero de jugadores)
+  #2. Crea la lista de jugadores y crea listas paralelas para puntos y penalidades
   for i in range(numjug):
     jugadores.append(input('Ingrese nombre del jugador ' + str(i+1) + ' : '))
     puntos.append(0)
     penalidad.append(0)
-  #pos = 0
+  
   cond = True
   while cond:
     for i in range(len(jugadores)):
@@ -23,7 +26,7 @@ def play(tableros,numjug):
       if puntos[i] >= 33:
         cond = False
         print('Ganó el jugador ' + str(jugadores[i]))
-        print('¡GANASTE!>>>',acumulado)
+        print('¡Eres el feliz GANADOR de $' + str(acumulado))
         mis.next('<enter>')
         break
 

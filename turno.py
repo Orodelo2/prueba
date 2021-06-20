@@ -3,7 +3,7 @@ import random
 import graficoCucaracha as g
 
 def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
-  dado = [1,2,3,4,5,6,]
+  dado = [1,2,3,4,5]
   listAux = []
   contador=0
   dados = 5
@@ -50,7 +50,7 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
       print('-'*25)
 
       #Se asigna la ganancia o se paga el case si pierde el turno por no sacar 1s
-      if contador > 0:
+      if 0 < contador < 4:
         dados -= contador
         puntosAux = g.actualizarTablero(tablero,contador,puntosAux)
         #gananciaAux += case
@@ -62,10 +62,16 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
           cond = mis.againEscapeNega(input('Desea lanzar nuevamente, S/N >>> '))
         else:
           cond = False
-      
+      elif contador == 5:
+        puntosAux = 33
+        print('\nFelicidades, has sacado puntaje perfecto en un lanzamiento, ¡haz ganado!')
+        mis.next('Presione <enter> para continuar')
       else:
-        penalidadAux += case
-        acumulado += case
+        if contador == 4:
+          print('\nHaz sacado 4 números 1 en un solo lanzamiento, serás penalizado.')
+          texto = '\nFin de turno, presione <enter>...'
+        penalidadAux += case*0.1
+        acumulado += penalidadAux
         cond = False
         mis.next(texto)
         print() 
