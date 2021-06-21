@@ -3,40 +3,44 @@ import random
 import graficoCucaracha as g
 
 def encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux):
-  mis.limpiar()
-  print('='*25)
+  mis.titulo()
+  texto = '>>>'+jugador+'<<<'
+  print('='*30)
   print('PREMIO ACUMULADO: $' + str(acumulado))
-  print('='*25)
-  print('     >>>',jugador,'<<<')
-  print('='*25)
-  print('puntos:',puntosAux,end=' ')
-  print('| Penalidad: $',penalidadAux)
-  print('='*25)
+  print('='*30)
+  print(texto.center(30))
+  print('='*30)
+  print('Puntos:',puntosAux)
+  print('Penalidad: $',penalidadAux)
+  print('='*30)
+
+def verDados(listAux):
   print('Resultado de los dados')
+  print('-'*30)
   for i in range(len(listAux)):
     print(listAux[i],end='\t')
   print()
-  print('-'*25)
+  print('-'*30)
 
 def printTablero(tablero):
-  for i in range(len(tablero)):
+  for i in range(14):
     for j in range(7):
       print(tablero[i][j],end='\t')
-  print()
+    print()
 
-def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
-  dado = [1,1,1,4,5]
+def lanzar(jugador,tablero,puntos,penalidad,case,acumulado,multa):
+  dado = [1,2,3,4,5]
   listAux = []
-  contador=0
+  contadorUnos = 0
   dados = 5
   cond = True
   puntosAux = puntos
   penalidadAux = penalidad
-      
-  print('='*25)
+  
+  mis.titulo()
   print('Turno jugador:',jugador)
-  print('='*25)
-  mis.next('Presione <enter> para lanzar')
+  print('='*30)
+  mis.next('<enter> para iniciar el turno')
   
   while cond:
     #controla 
@@ -46,47 +50,57 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado):
     if puntosAux < 33:
       listAux= []  
 
+      #Ejecuta los 5 lanzamientos de los dados
       for i in range(dados):
         random.shuffle(dado)
-        listAux.append(dado[0])
-        if dado[0] == 1:
-          contador+=1
+        listAux.append(dado[3])
 
-      print()
-      print('-'*25)
+      contadorUnos = listAux.count(1)
 
       #Se asigna la ganancia o se paga el case si pierde el turno por no sacar 1s
-      if 0 < contador < 4:
-        dados -= contador
-        # 0   1   2   3
-        #[0, C1, C2, C3]
-        puntosAux = g.actualizarTablero(tablero,contador,puntosAux)
+      if 0 < contadorUnos < 4:
+        dados -= contadorUnos
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
-
-        for i in range(len(tablero)):
-          for j in range(7):
-            print(tablero[i][j],end='\t')
-          print()
-        #gananciaAux += case
-        contador = 0
+        mis.next('<enter> para lanzar')
+        puntosAux = g.actualizarTablero(tablero,contadorUnos,puntosAux)
+        encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
+        verDados(listAux)
+        mis.next('<enter> para llenar tablero')
+        encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
+        verDados(listAux)
+        printTablero(tablero)
+        contadorUnos = 0
 
         #reinicia a 5 dados si el número de dados es cero por sacar 1s repetidamente en los lanzamientos.
         if dados != 0:
           #pregunta si el jugador desea lanzar nuevamente
-          cond = mis.againEscapeNega(input('Desea lanzar nuevamente, S/N >>> '))
+          cond = mis.againEscapeNega(input('\nDesea lanzar nuevamente, S/N >>> '))
         else:
           cond = False
-      elif contador == 5:
+      elif contadorUnos == 5:
         puntosAux = 33
         print('\nFelicidades, has sacado puntaje perfecto en un lanzamiento, ¡haz ganado!')
         mis.next('Presione <enter> para continuar')
       else:
-        penalidadAux += case*0.1
-        acumulado += penalidadAux
+
 
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
+        mis.next('<enter> para lanzar')
+        penalidadAux += multa
+        acumulado += penalidadAux
+        puntosAux = g.actualizarTablero(tablero,contadorUnos,puntosAux)
+        encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
+        verDados(listAux)
+        print('Pagas multa'.center(30))
+        print('.'*30)
+        mis.next('<enter> para ver tablero')
+        encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
+        verDados(listAux)
+        print('Pagas multa'.center(30))
+        print('.'*30)
+        printTablero(tablero)
 
-        if contador == 4:
+        if contadorUnos == 4:
           print('\nHaz sacado 4 números 1 en un solo lanzamiento, serás penalizado.')
         
         cond = False

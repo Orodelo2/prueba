@@ -1,48 +1,63 @@
 import graficoCucaracha as g
 import juego
 import miscellaneous as mis
+import presentacion as pre
+import validaciones as val
 
-tableros = [] #Definimos Lista para guardar todos los tableros
-matriz  = [] #Defino tablero jugador 1
-matriz2 = [] #Defino tablero jugador 2
-matriz3 = [] #Defino tablero jugador 3
-matriz4 = [] #Defino tablero jugador 4
-matriz5 = [] #Defino tablero jugador 5
-matriz6 = [] #Defino tablero jugador 6
-matriz7 = [] #Defino tablero jugador 7
-
-g.crearTablero(matriz) #Creamos el tablero del jugador 1
-g.crearTablero(matriz2)#Creamos el tablero del jugador 2
-g.crearTablero(matriz3)#Creamos el tablero del jugador 3
-g.crearTablero(matriz4)#Creamos el tablero del jugador 4
-g.crearTablero(matriz5)#Creamos el tablero del jugador 5
-g.crearTablero(matriz6)#Creamos el tablero del jugador 6
-g.crearTablero(matriz7)#Creamos el tablero del jugador 7
-
+#Definimos Lista para guardar todos los tableros
+tableros = [] 
+#carga el tablero des un txt para ser usado en el juego
+g.cargarTablero()
 #Creamos la lista de tableros, para guardar todos los tableros de los jugadores
-tableros.append(matriz)
-tableros.append(matriz2)
-tableros.append(matriz3)
-tableros.append(matriz4)
-tableros.append(matriz5)
-tableros.append(matriz6)
-tableros.append(matriz7)
+for i in range(7):
+  tableros.append(g.crearTablero())
 
-#Validar que el número de jugadores sea entre 2 y 7.
-cond = True
-while cond:
-  try:  
-    mis.limpiar()
-    numJugadores = int(input('Ingrese número de jugadores >>> '))
-    if 1 < numJugadores <= 7:
-      cond = False
+def juegoNuevo(T):
+  #Validar que el número de jugadores sea entre 2 y 7.
+  global numJugadores 
+  numJugadores = val.numeroJugadores()
+  juego.play(tableros,numJugadores,T)
+
+def againPlay(F):
+  mis.limpiar()
+  juego.play(tableros,numJugadores,F)
+
+
+def continuar():
+  global cond
+  while True:
+    mis.titulo()
+    cond, flag = val.validar('Desea jugar nuevamente, S/N >>> ')
+    if flag == False:
+      break
     else:
-      print('Ingrese cantidad de jugadores entre 2 y 7')
-      mis.next('<enter>')
-  except:
-    mis.limpiar()
-    print('Ingrese cantidad de jugadores entre 2 y 7')
-    mis.next('<enter>')
+      None
 
-juego.play(tableros,numJugadores)
-cond = mis.againEscapeNega(input('Desea jugar nuevamente, S/N >>> '))
+#ejecuta el juego por primera vez cuando se corre el juego
+mis.limpiar()
+pre.presentacion()
+mis.titulo()
+juegoNuevo(True)
+continuar()
+
+#controla la repetición del juego
+while True:
+  if cond == True:
+    opcion = input('Juego con Nuevos Jugadores, S/N: ')
+    opcion = opcion.casefold()
+
+    if opcion == 's' or opcion == 'si':
+      juegoNuevo(True)
+      continuar()
+    else:
+      againPlay(False)
+      continuar()
+
+  else:
+    mis.titulo()
+    print('\nJUEGO FINALIZADO')
+    input('\nPresione <enter> para salir')
+    mis.limpiar()
+    break
+    
+#if cond == True

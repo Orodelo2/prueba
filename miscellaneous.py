@@ -1,6 +1,12 @@
 import os
 
 #Función para generar una pausa por medio de un input de pantalla
+def titulo():
+  limpiar()
+  print('='*30)
+  print('JUEGO LA CUCARACHA'.center(30))
+  print('='*30)
+
 def next(texto):
   input('\n'+texto)
 
@@ -12,7 +18,7 @@ def again():
     w = True
   elif S_N == 'n' or S_N == 'no' :
     w = False
- 
+  
   return w
 
 def againEscapeAfir(S_N):
@@ -32,6 +38,8 @@ def againEscapeNega(S_N):
     w = True
   elif S_N == 'n' or S_N == 'no' :
     w = False
+  else:
+    w = True
  
   return w
   

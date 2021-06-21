@@ -1,36 +1,22 @@
 
-def crearTablero(tablero):
+def cargarTablero():
+  global tablerotxt
+  hand = open('tablero.txt','r')
+  tablerotxt = hand.read()
+  hand.close()
+
+def crearTablero():  
+  tablero = []
+  listaAux = []
+  for line in tablerotxt:
+    if not line.startswith("\n"):
+      listaAux.append(line)
+    else:
+      tablero.append(listaAux)
+      listaAux = []
   
-  f0  = [' ','2',' ',' ',' ','2',' ']
-  f1  = [' ',' ','2',' ','2',' ',' ']
-  f2  = [' ',' ',' ','2',' ',' ',' ']
-  f3  = [' ',' ','2',' ','2',' ',' ']
-  f4  = ['-','1','1',' ','1','1','-']
-  f5  = ['|',' ','|',' ','|',' ','|']
-  f6  = [' ',' ','|',' ','|',' ',' ']
-  f7  = ['-','1','1',' ','1','1','-']
-  f8  = ['|',' ','|',' ','|',' ','|']
-  f9  = [' ',' ','|',' ','|',' ',' ']
-  f10 = [' ','1','1',' ','1','1',' ']
-  f11 = ['1',' ','|',' ','|',' ','1']
-  f12 = ['|',' ','1',' ','1',' ','|']
-  f13 = ['|',' ',' ','3',' ',' ','|']
-
-  tablero.append(f0)
-  tablero.append(f1)
-  tablero.append(f2)
-  tablero.append(f3)
-  tablero.append(f4)
-  tablero.append(f5)
-  tablero.append(f6)
-  tablero.append(f7)
-  tablero.append(f8)
-  tablero.append(f9)
-  tablero.append(f10)
-  tablero.append(f11)
-  tablero.append(f12)
-  tablero.append(f13)
-
+  return tablero
+  
 
 def actualizarTablero(matriz,pos,points):
   pos2 = str(pos)
