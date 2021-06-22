@@ -1,0 +1,83 @@
+........................................
+==Instrucciones del Juego la Cucaracha==
+........................................
+
+>>>Instrucciones Generales
+Se lanzan los cinco dados, (el objetivo 
+es que salga el número uno y con este 
+rellenar el cuerpo de la cucaracha)
+siendo válido solo el número uno (1)
+
+>>>Reglas y condciones del juego
+1.	Definir el Case y la penalidad
+
+2.	Se abona el valor del dinero 
+pactado en el case
+
+3.	Si en el lanzamiento no sale 
+ningún dado con el número uno (1), 
+cederás el turno y abonarás la cantidad
+de dinero pactado como penalidad.
+
+4.	Si sale en un dado el número 
+uno (1) colocaras una ficha en cualquiera
+de los puntos marcados con el número
+UNO (1), igualmente tendrá la opción de
+lanzar nuevamente los cuatro dados
+restantes en los cuales no salió el número
+UNO (1) (arriesgando el hecho de que no
+salga un número uno en el nuevo lanzamiento,
+teniendo que pagar el valor pactado
+previamente). O ceder el turno si no se
+requiere arriesgar y pagar penalidad.
+                                               
+5.	Nuevamente lanza los dados restantes
+y si al lanzar los CUATRO DADOS restantes,
+nuevamente sale un dado con el número UNO
+(1) volverá a ubicar una ficha en un punto
+marcado con el número UNO (1). Si el jugador
+lo desea, puede seguir lanzando ahora solo
+los TRES DADOS restantes (arriesgando el
+hecho de que no salga un número uno en el
+nuevo lanzamiento, teniendo que pagar el
+valor pactado de penalidad previamente), 
+Así sucesivamente hasta que ya no queden
+dados por lanzar o hasta que deje de salir
+el número uno (1), cediendo turno o pagando
+el valor pactado.
+Nota: Luego de un lanzamiento el jugador
+podrá ceder su turno y no arriesgarse a
+perder dinero.
+
+6.	La cantidad de dados que muestren el
+número uno (1) en un mismo lanzamiento,
+determinan la cantidad de fichas y la posición
+en donde podrás colocar las ficha en el tablero.
+Con el número UNO “1” lanzados podrá ir rellenando
+parte de la cucaracha como son:
+Con Un “Sólo 1” que aparezca en los dados
+lanzado forma, Cuerpo, brazos o manos.
+Con dos “1” que aparezcan en los dados
+lanzados a la vez, formaras, cara o antenas.
+Con “Tres 1” que aparezcan en los dados
+lanzados a la vez, formaras la cola de la cucaracha.1
+Condiciones especiales para contemplar:
+
+* El jugador que lance los dados, y que saque en los
+cinco dados el número uno, será el ganador del juego 
+o el que logre llenar primero la cucaracha, cualquiera
+de las dos opciones que se dé primero será el ganador
+y el dinero acumulado en la coca será para este jugador.
+
+* Si al lanzar los dados, un jugador saca la cola
+(salen 3 dados con el número 1) y la cola ya está
+llena, podrá rellenar con dos 1, que le falten en
+el cuerpo de la cucaracha cara o antenas
+
+* Si El dos que corresponde a cara o antenas está
+ocupado, podrá rellenar el cuerpo de la cucaracha
+en los uno que le haga falta (solo un uno podrá seleccionar)
+
+* Si al lanzar los dados, un jugador saca 4 unos
+(salen 4 dados con el número 1) y perderá
+el turno y pagara penalidad.

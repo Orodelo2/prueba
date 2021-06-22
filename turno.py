@@ -48,7 +48,7 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado,multa):
     #2. Si cede el turno al no sacar 1s.
     #3. si el jugador debe pagar o recibir ganancia.
     if puntosAux < 33:
-      listAux= []  
+      listAux= []  #Alamacena el valor de los 5 dados lanzados
 
       #Ejecuta los 5 lanzamientos de los dados
       for i in range(dados):
@@ -59,16 +59,24 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado,multa):
 
       #Se asigna la ganancia o se paga el case si pierde el turno por no sacar 1s
       if 0 < contadorUnos < 4:
+        #resta un dado por cada 1 obtenido
         dados -= contadorUnos
+
+        #imprime el encabezado de los datos del turno
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
-        mis.next('<enter> para lanzar')
+        mis.next('<enter> para lanzar') #pausa
+        
+        #envia el resultado de los dados para actualizar el tablero y totalizar los puntos obtenidos
         puntosAux = g.actualizarTablero(tablero,contadorUnos,puntosAux)
+
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
         verDados(listAux)
         mis.next('<enter> para llenar tablero')
+
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
         verDados(listAux)
         printTablero(tablero)
+
         contadorUnos = 0
 
         #reinicia a 5 dados si el número de dados es cero por sacar 1s repetidamente en los lanzamientos.
@@ -77,12 +85,12 @@ def lanzar(jugador,tablero,puntos,penalidad,case,acumulado,multa):
           cond = mis.againEscapeNega(input('\nDesea lanzar nuevamente, S/N >>> '))
         else:
           cond = False
+
       elif contadorUnos == 5:
         puntosAux = 33
         print('\nFelicidades, has sacado puntaje perfecto en un lanzamiento, ¡haz ganado!')
         mis.next('Presione <enter> para continuar')
       else:
-
 
         encabezado(acumulado,jugador,puntosAux,penalidadAux,listAux)
         mis.next('<enter> para lanzar')

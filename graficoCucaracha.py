@@ -17,7 +17,6 @@ def crearTablero():
   
   return tablero
   
-
 def actualizarTablero(matriz,pos,points):
   pos2 = str(pos)
   salto = False

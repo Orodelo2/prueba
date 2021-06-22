@@ -1,5 +1,17 @@
 import os
 
+def instrucciones():
+  limpiar()
+  try:
+    handler = open("Instrucciones.txt","r")
+    instrucciones = handler.read()
+    handler.close()
+  except:
+    None
+  
+  print(instrucciones)
+
+
 #Función para generar una pausa por medio de un input de pantalla
 def titulo():
   limpiar()
@@ -95,3 +107,13 @@ def limpiar():
 def funcion(a):
   a[0] = 10
 
+def menu():
+  titulo()
+  print(' '*6,'1. Instrucciones')
+  print(' '*6,'2. Jugar')
+  print(' '*6,'3. Salir')
+  print('-'*30)
+  opcion = input('\nIngrese opción>>> ')
+  
+  return opcion
+  

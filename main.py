@@ -22,7 +22,6 @@ def againPlay(F):
   mis.limpiar()
   juego.play(tableros,numJugadores,F)
 
-
 def continuar():
   global cond
   while True:
@@ -33,31 +32,43 @@ def continuar():
     else:
       None
 
-#ejecuta el juego por primera vez cuando se corre el juego
+
 mis.limpiar()
 pre.presentacion()
-mis.titulo()
-juegoNuevo(True)
-continuar()
 
-#controla la repetición del juego
 while True:
-  if cond == True:
-    opcion = input('Juego con Nuevos Jugadores, S/N: ')
-    opcion = opcion.casefold()
+  opcion = mis.menu()
 
-    if opcion == 's' or opcion == 'si':
-      juegoNuevo(True)
-      continuar()
-    else:
-      againPlay(False)
-      continuar()
-
-  else:
+  if opcion == '1':
+    mis.instrucciones()
+    mis.next('<enter>, para volver...')
+  elif opcion == '2':
+    #ejecuta el juego por primera vez cuando se corre el juego
     mis.titulo()
-    print('\nJUEGO FINALIZADO')
-    input('\nPresione <enter> para salir')
-    mis.limpiar()
-    break
-    
-#if cond == True
+    juegoNuevo(True)
+    continuar()
+
+    #controla la repetición del juego
+    while True:
+      if cond == True:
+        opcion = input('Juego con Nuevos Jugadores, S/N: ')
+        opcion = opcion.casefold()
+
+        if opcion == 's' or opcion == 'si':
+          juegoNuevo(True)
+          continuar()
+        else:
+          againPlay(False)
+          continuar()
+
+      else:
+        mis.titulo()
+        print('\nJUEGO FINALIZADO')
+        input('\nPresione <enter> para salir')
+        mis.limpiar()
+        break
+  elif opcion == '3':
+    mis.next('Juego Finalizado, <enter> ')
+    break 
+  else:
+    mis.next('Ingrese opción válida, <enter> ')
